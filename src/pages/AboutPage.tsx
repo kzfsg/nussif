@@ -68,6 +68,9 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Video */}
+      <VideoModal />
+
       {/* Who We Are */}
       <section className="section-padding bg-background">
         <div className="container-site grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-20">
