@@ -69,7 +69,7 @@ export default function AboutPage() {
       </section>
 
       {/* Video */}
-      <VideoModal />
+      <VideoModal vimeoId="1171285504" thumbnailUrl="https://i.vimeocdn.com/video/2130738176-ba696526f900a41a6a9305fe38df112d76e67f15047bd3e1941bbbaba103f600-d_640?region=us" />
 
       {/* Who We Are */}
       <section className="section-padding bg-background">
