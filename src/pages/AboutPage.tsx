@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import HeroSection from '@/components/HeroSection';
+import VideoModal from '@/components/VideoModal';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { useCountUp } from '@/hooks/useCountUp';
 import heroImage from '@/assets/hero-singapore.jpg';
@@ -66,6 +67,9 @@ export default function AboutPage() {
           ))}
         </div>
       </section>
+
+      {/* Video */}
+      <VideoModal />
 
       {/* Who We Are */}
       <section className="section-padding bg-background">
