@@ -5,9 +5,9 @@ import { useScrollReveal } from '@/hooks/useScrollReveal';
 import heroImage from '@/assets/hero-singapore.jpg';
 
 const leadership = [
-  { name: 'Sean Wong', role: 'Co-Head of Total Portfolios', email: 'sean@u.nus.edu', linkedIn: 'https://linkedin.com' },
-  { name: 'Rave Lai', role: 'Co-Head of Total Portfolios', email: 'rave@u.nus.edu', linkedIn: 'https://linkedin.com' },
-  { name: 'Jerry Z', role: 'Leadership', email: 'jerry@u.nus.edu', linkedIn: 'https://linkedin.com' },
+  { name: 'Sean Wong', role: 'Co-Head of Total Portfolios', email: 'sean@u.nus.edu', linkedIn: 'https://linkedin.com', headshot: '/people/sean-wong.jpg' },
+  { name: 'Rave Lai', role: 'Co-Head of Total Portfolios', email: 'rave@u.nus.edu', linkedIn: 'https://linkedin.com', headshot: '/people/rave-lai.jpg' },
+  { name: 'Jerry Z', role: 'Leadership', email: 'jerry@u.nus.edu', linkedIn: 'https://linkedin.com', headshot: '/people/jerry-z.jpg' },
 ];
 
 const investingPods = [
@@ -15,8 +15,8 @@ const investingPods = [
     name: 'L/S Equities',
     description: 'Our Long/Short Equities pod pursues alpha through both long and short positions across Singapore and global equity markets. Combining fundamental analysis with thematic conviction, the team identifies mispriced securities and relative value opportunities, deploying a blend of L/S, Event-Driven, and Relative Value strategies.',
     members: [
-      { name: 'Abdullah Armain', role: 'Portfolio Manager, L/S Equities', email: 'abdullah@u.nus.edu', linkedIn: 'https://linkedin.com' },
-      { name: 'Wong Zhao Yang', role: 'Portfolio Manager, L/S Equities', email: 'zhaoyang@u.nus.edu', linkedIn: 'https://linkedin.com' },
+      { name: 'Abdullah Armain', role: 'Portfolio Manager, L/S Equities', email: 'abdullah@u.nus.edu', linkedIn: 'https://linkedin.com', headshot: '/people/abdullah-armain.jpg' },
+      { name: 'Wong Zhao Yang', role: 'Portfolio Manager, L/S Equities', email: 'zhaoyang@u.nus.edu', linkedIn: 'https://linkedin.com', headshot: '/people/wong-zhao-yang.jpg' },
     ],
     analysts: [
       { name: 'Analyst 1', email: 'analyst1@u.nus.edu', linkedIn: 'https://linkedin.com' },
@@ -27,9 +27,9 @@ const investingPods = [
     name: 'Global Macro',
     description: 'The Global Macro pod exercises discretion over the FICC portfolio, deploying macro hedge fund strategies to generate absolute returns across fixed income, currencies, and equity index instruments — regardless of investment climate.',
     members: [
-      { name: 'Alvin Yeow', role: 'Portfolio Manager, Global Macro', email: 'alvin@u.nus.edu', linkedIn: 'https://linkedin.com' },
-      { name: 'Ye Wen Jun', role: 'Portfolio Manager, Global Macro', email: 'wenjun@u.nus.edu', linkedIn: 'https://linkedin.com' },
-      { name: 'Eve', role: 'Analyst, Global Macro', email: 'eve@u.nus.edu', linkedIn: 'https://linkedin.com' },
+      { name: 'Alvin Yeow', role: 'Portfolio Manager, Global Macro', email: 'alvin@u.nus.edu', linkedIn: 'https://linkedin.com', headshot: '/people/alvin-yeow.jpg' },
+      { name: 'Ye Wen Jun', role: 'Portfolio Manager, Global Macro', email: 'wenjun@u.nus.edu', linkedIn: 'https://linkedin.com', headshot: '/people/ye-wen-jun.jpg' },
+      { name: 'Eve', role: 'Analyst, Global Macro', email: 'eve@u.nus.edu', linkedIn: 'https://linkedin.com', headshot: '/people/eve.jpg' },
     ],
     analysts: [
       { name: 'Analyst 1', email: 'analyst1@u.nus.edu', linkedIn: 'https://linkedin.com' },
@@ -39,7 +39,7 @@ const investingPods = [
     name: 'Commodities',
     description: 'The Commodities pod focuses on the identification and execution of trading strategies across energy and metals markets. Grounded in both micro and macro fundamentals, the team brings deep specialisation and dedicated rigour.',
     members: [
-      { name: 'Chew Jinn Ming', role: 'Portfolio Manager, Commodities', email: 'jinnming@u.nus.edu', linkedIn: 'https://linkedin.com' },
+      { name: 'Chew Jinn Ming', role: 'Portfolio Manager, Commodities', email: 'jinnming@u.nus.edu', linkedIn: 'https://linkedin.com', headshot: '/people/chew-jinn-ming.jpg' },
     ],
     analysts: [
       { name: 'Analyst 1', email: 'analyst1@u.nus.edu', linkedIn: 'https://linkedin.com' },
@@ -49,7 +49,7 @@ const investingPods = [
     name: 'Systematic Strategies',
     description: 'The Systematic Strategies pod embeds quantitative and data-driven analysis into the fund\'s investment and portfolio decisions. The team supports the asset pods by providing a quantitative dimension to market views.',
     members: [
-      { name: 'Poo Chet Wee', role: 'Head of Systematic Strategies', email: 'chetwee@u.nus.edu', linkedIn: 'https://linkedin.com' },
+      { name: 'Poo Chet Wee', role: 'Head of Systematic Strategies', email: 'chetwee@u.nus.edu', linkedIn: 'https://linkedin.com', headshot: '/people/poo-chet-wee.jpg' },
     ],
     analysts: [
       { name: 'Analyst 1', email: 'analyst1@u.nus.edu', linkedIn: 'https://linkedin.com' },
@@ -61,21 +61,21 @@ const operationsPods = [
   {
     name: 'Risk & Infrastructure',
     members: [
-      { name: 'Senyi', role: 'Head of Risk & Infrastructure', email: 'senyi@u.nus.edu', linkedIn: 'https://linkedin.com' },
+      { name: 'Senyi', role: 'Head of Risk & Infrastructure', email: 'senyi@u.nus.edu', linkedIn: 'https://linkedin.com', headshot: '/people/senyi.jpg' },
     ],
   },
   {
     name: 'Externals',
     members: [
-      { name: 'Davin', role: 'Head of Externals', email: 'davin@u.nus.edu', linkedIn: 'https://linkedin.com' },
-      { name: 'Yi Fei', role: 'Analyst, Externals', email: 'yifei@u.nus.edu', linkedIn: 'https://linkedin.com' },
+      { name: 'Davin', role: 'Head of Externals', email: 'davin@u.nus.edu', linkedIn: 'https://linkedin.com', headshot: '/people/davin.jpg' },
+      { name: 'Yi Fei', role: 'Analyst, Externals', email: 'yifei@u.nus.edu', linkedIn: 'https://linkedin.com', headshot: '/people/yi-fei.jpg' },
     ],
   },
   {
     name: 'Fund Development',
     members: [
-      { name: 'Helena', role: 'Head of Fund Development', email: 'helena@u.nus.edu', linkedIn: 'https://linkedin.com' },
-      { name: 'Brenda', role: 'Analyst, Fund Development', email: 'brenda@u.nus.edu', linkedIn: 'https://linkedin.com' },
+      { name: 'Helena', role: 'Head of Fund Development', email: 'helena@u.nus.edu', linkedIn: 'https://linkedin.com', headshot: '/people/helena.jpg' },
+      { name: 'Brenda', role: 'Analyst, Fund Development', email: 'brenda@u.nus.edu', linkedIn: 'https://linkedin.com', headshot: '/people/brenda.jpg' },
     ],
   },
 ];
