@@ -197,31 +197,15 @@ export default function AboutPage() {
             Guided by industry practitioners with decades of experience in global finance.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 fade-up" style={{ transitionDelay: '0.2s' }}>
-            <div className="flex gap-6 items-start">
-              <div className="headshot-frame flex-shrink-0">
-                <svg width="40" height="40" viewBox="0 0 48 48" fill="none" className="text-muted-foreground/40">
-                  <circle cx="24" cy="18" r="9" stroke="currentColor" strokeWidth="1.5" fill="none" />
-                  <path d="M6 44c0-9.94 8.06-18 18-18s18 8.06 18 18" stroke="currentColor" strokeWidth="1.5" fill="none" />
-                </svg>
-              </div>
-              <div>
-                <h3 className="font-display font-medium text-foreground text-xl">Adjunct Professor James Cheng</h3>
-                <p className="eyebrow mt-1">Senior Advisor</p>
-                <p className="body-text mt-3 text-sm">Previously CEO & Senior Advisor to Morgan Stanley Investment Management, and CIO at Invesco Asia.</p>
-              </div>
+            <div className="space-y-1">
+              <h3 className="font-display font-medium text-foreground text-xl">Adjunct Professor James Cheng</h3>
+              <p className="eyebrow">Senior Advisor</p>
+              <p className="body-text mt-2 text-sm">Previously CEO & Senior Advisor to Morgan Stanley Investment Management, and CIO at Invesco Asia.</p>
             </div>
-            <div className="flex gap-6 items-start">
-              <div className="headshot-frame flex-shrink-0">
-                <svg width="40" height="40" viewBox="0 0 48 48" fill="none" className="text-muted-foreground/40">
-                  <circle cx="24" cy="18" r="9" stroke="currentColor" strokeWidth="1.5" fill="none" />
-                  <path d="M6 44c0-9.94 8.06-18 18-18s18 8.06 18 18" stroke="currentColor" strokeWidth="1.5" fill="none" />
-                </svg>
-              </div>
-              <div>
-                <h3 className="font-display font-medium text-foreground text-xl">Kwan Ng</h3>
-                <p className="eyebrow mt-1">Senior Advisor</p>
-                <p className="body-text mt-3 text-sm">Currently Portfolio Manager at ExodusPoint. Formerly Senior Portfolio Manager at BlueCrest Capital Management, Head of FX Trading at Barclays, and Trader at Millennium.</p>
-              </div>
+            <div className="space-y-1">
+              <h3 className="font-display font-medium text-foreground text-xl">Kwan Ng</h3>
+              <p className="eyebrow">Senior Advisor</p>
+              <p className="body-text mt-2 text-sm">Currently Portfolio Manager at ExodusPoint. Formerly Senior Portfolio Manager at BlueCrest Capital Management, Head of FX Trading at Barclays, and Trader at Millennium.</p>
             </div>
           </div>
         </div>

@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+ 
+# Do not commit local agent guide
+AGENTS.md
