@@ -239,11 +239,11 @@ export default function AboutPage() {
               {[
                 {
                   title: "Background",
-                  text: "NUSSIF was founded to bring real, professional investment opportunities to NUS students passionate about careers in buy-side asset management and hedge funds.",
+                  text: "NUSSIF was founded by individuals passionate about understanding the world, aiming to bring real, professional investment opportunities to NUS students passionate about careers in the financial industry.",
                 },
                 {
                   title: "Our Purpose",
-                  text: "Drawing inspiration from leading global practices and internship experiences across hedge funds and trading desks, we are determined to build a platform for active professional growth — through the management of live capital, industry connections, and genuine member ownership.",
+                  text: "Drawing inspiration from leading global practices and internship experiences across hedge funds and trading desks, we are determined to build a platform for active professional and personal growth through the management of live capital, industry connections, and genuine member ownership.",
                 },
                 {
                   title: "Our Vision",
