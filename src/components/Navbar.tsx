@@ -7,6 +7,7 @@ const navItems = [
   { label: 'About Us', path: '/' },
   { label: 'Program', path: '/program' },
   { label: 'People', path: '/people' },
+  { label: 'Recruitment', path: '/recruitment' },
 ];
 
 export default function Navbar() {

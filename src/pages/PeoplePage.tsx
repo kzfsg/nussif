@@ -8,7 +8,6 @@ import heroImage from '@/assets/hero-singapore.jpg';
 const leadership = [
   { name: 'Sean Wong', role: 'Co-Head of Total Portfolios', email: 'sean_wong@u.nus.edu', linkedIn: 'https://linkedin.com', headshot: '/people/sean-wong.jpg' },
   { name: 'Rave Lai', role: 'Co-Head of Total Portfolios', email: 'ravelai@u.nus.edu', linkedIn: 'https://linkedin.com', headshot: '/people/rave-lai.jpg' },
-  { name: 'Jerry Z', role: 'Leadership', email: 'zhonghaoxijerry@gmail.com', linkedIn: 'https://linkedin.com', headshot: '/people/jerry-z.jpg' },
 ];
 
 const investingCapsules = [
@@ -21,7 +20,7 @@ const investingCapsules = [
     imagePosition: 'center 10%',
     leadersLabel: 'Portfolio Managers',
     leaders: [
-      { name: 'Abdullah Armain', role: 'Portfolio Manager, L/S Equities', email: 'e1399126@u.nus.edu', linkedIn: 'https://www.linkedin.com/in/abdullah-armain-078052189/', headshot: '/people/abdullah-armain.jpg' },
+      { name: 'Qiyang Ke', role: 'Portfolio Manager, L/S Equities', email: 'ke_qiyang@u.nus.edu', linkedIn: 'https://www.linkedin.com/in/keqiyang/', headshot: '/people/qiyang.jpeg' },
       { name: 'Wong Zhao Yang', role: 'Portfolio Manager, L/S Equities', email: 'wongzhaoyang@u.nus.edu', linkedIn: 'https://www.linkedin.com/in/wongzhaoyang/', headshot: '/people/wong-zhao-yang.jpg' },
     ],
     analysts: [
@@ -33,7 +32,6 @@ const investingCapsules = [
       { name: 'Wesley Lim', email: 'wesleylim@u.nus.edu', linkedIn: 'https://www.linkedin.com/in/wesleylimchzelee/' },
       { name: 'Gong Zekai', email: 'Gong@u.nus.edu', linkedIn: 'https://www.linkedin.com/in/zekaigong/' },
       { name: 'Toh Xian Zong', email: 'e1398634@u.nus.edu' },
-      { name: 'Qiyang', email: 'Ke_qiyang@u.nus.edu' },
       { name: 'Lara', email: 'larawong@u.nus.edu' },
       { name: 'Ron', email: 'ronangjy@u.nus.edu' },
     ],
@@ -47,13 +45,13 @@ const investingCapsules = [
     imagePosition: 'center 30%',
     leadersLabel: 'Portfolio Managers',
     leaders: [
-      { name: 'Guo Xuan', role: 'Portfolio Manager, Global Macro', email: 'guoxuan@u.nus.edu', linkedIn: 'https://www.linkedin.com/in/guo-xuan-koh/', headshot: '/people/guo-xuan.JPG' },
-      { name: 'Chew Jinn Ming', role: 'Portfolio Manager, Commodities', email: 'chew.jinnming@u.nus.edu', linkedIn: 'https://www.linkedin.com/in/chew-jinn-ming/', headshot: '/people/chew-jinn-ming.jpg' },
+      { name: 'Li Jiayun', role: 'Portfolio Manager, Global Macro', email: 'jiayun.li@u.nus.edu', linkedIn: 'https://www.linkedin.com/in/jiayun-li-nus/', headshot: '/people/jiayun.jpeg' },
+      { name: 'Atharva Mulik', role: 'Portfolio Manager, Global Macro', email: 'atharvamulik@u.nus.edu', linkedIn: 'https://www.linkedin.com/in/atharvamulik/', headshot: '/people/atharva.jpeg' },
+      { name: 'Ian Agustines', role: 'Portfolio Manager, Commodities', email: 'ianagustines.18@gmail.com', linkedIn: 'https://www.linkedin.com/in/ian-agustines/', headshot: '/people/ian_headshot.png' },
     ],
     analysts: [
       { name: 'Davin', email: 'davinchang@u.nus.edu' },
       { name: 'Bernard', email: 'E1408760@u.nus.edu', linkedIn: 'https://www.linkedin.com/in/bernard-kwee/' },
-      { name: 'Atharva', email: 'e1398424@u.nus.edu', linkedIn: 'https://www.linkedin.com/in/atharvamulik/' },
       { name: 'Joash', email: 'e0957928@u.nus.edu', linkedIn: 'https://www.linkedin.com/in/joash-lim-634292223/' },
       { name: 'Gerald', email: 'ce1186154@u.nus.edu' },
       { name: 'Pu Huan', email: 'pzhu@u.nus.edu', linkedIn: 'https://www.linkedin.com/in/zhu-puhuan-hank-a9a839299/' },
@@ -71,7 +69,6 @@ const investingCapsules = [
       { name: 'Chet Wee', role: 'Head of Systematic Strategies', email: 'chetweepe@gmail.com', linkedIn: 'https://www.linkedin.com/in/cwpe/', headshot: '/people/poo-chet-wee.jpg' },
     ],
     analysts: [
-      { name: 'Jia Yun', email: 'jiayun.li@u.nus.edu', linkedIn: 'https://www.linkedin.com/in/jiayun-li-nus/' },
       { name: 'Jun Yang', email: 'limjunyang@u.nus.edu', linkedIn: 'https://www.linkedin.com/in/jun-yang-lim/' },
     ],
   },

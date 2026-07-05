@@ -30,6 +30,14 @@ export default function Footer() {
         { text: "LinkedIn", href: "https://www.linkedin.com/company/nussif", external: true },
       ],
     },
+    {
+      title: "Recruitment",
+      links: [
+        { text: "Investing Roles", href: "/recruitment#investing-roles", internal: true },
+        { text: "Operations Roles", href: "/recruitment#operations-roles", internal: true },
+        { text: "Apply Now", href: "https://forms.office.com/Pages/ShareFormPage.aspx?id=Xu-lWwkxd06Fvc_rDTR-ghbuzO_hwkFNmR1TLDctiJBUME1NVUdYQzNGNlVOSzdKQkhWSUY3MUI0UC4u&sharetoken=TGc4Xqw46sMkbulMbeRJ", external: true },
+      ],
+    },
   ];
 
   return (
@@ -39,7 +47,7 @@ export default function Footer() {
 
       <div className="container-site py-16 md:py-24">
         {/* Main grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr_1fr] gap-12 lg:gap-0">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr_1fr_1fr] gap-12 lg:gap-0">
           {/* Branding column */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}

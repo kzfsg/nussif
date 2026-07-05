@@ -9,6 +9,7 @@ import ScrollToHash from "@/components/ScrollToHash";
 import AboutPage from "./pages/AboutPage";
 import ProgramPage from "./pages/ProgramPage";
 import PeoplePage from "./pages/PeoplePage";
+import RecruitmentPage from "./pages/RecruitmentPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +27,7 @@ const App = () => (
             <Route path="/" element={<AboutPage />} />
             <Route path="/program" element={<ProgramPage />} />
             <Route path="/people" element={<PeoplePage />} />
+            <Route path="/recruitment" element={<RecruitmentPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
