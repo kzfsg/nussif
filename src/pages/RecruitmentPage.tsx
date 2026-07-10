@@ -424,7 +424,7 @@ function FaqItem({
 
 /* ─── FAQ section — single-open accordion, Millennium-style ─── */
 function RecruitmentFaqs() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
     <section id="faqs" className="section-padding bg-background scroll-mt-24">
@@ -468,7 +468,7 @@ export default function RecruitmentPage() {
       <PageHero
         image={heroImage}
         title="Recruitment"
-        subtitle="Seven analyst seats across two divisions. One application. A live fund from day one."
+        subtitle="The following pertains to the H2, 2026 Recruitment Cycle."
       >
         <button
           onClick={() => document.getElementById('apply')?.scrollIntoView({ behavior: 'smooth' })}
@@ -512,7 +512,7 @@ export default function RecruitmentPage() {
             >
               <div className="space-y-10">
                 {[
-                  { figure: '07', label: 'Open Positions' },
+                  { figure: '07', label: 'Teams' },
                   { figure: '02', label: 'Divisions' },
                   { figure: '01', label: 'Application' },
                 ].map((stat) => (

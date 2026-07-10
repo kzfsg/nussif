@@ -68,24 +68,24 @@ function KineticQuote() {
 const stages = [
   {
     eyebrow: 'Recruitment',
-    heading: 'Execution Track — Trainee Analyst',
-    body: 'Analysts join NUSSIF through a selective recruitment process into the Execution Track as a Trainee Analyst. Selection is based on intellectual curiosity, financial acumen, and the drive to operate in a professional investment environment.',
+    heading: 'Execution Track — Investing Analyst',
+    body: 'Analysts join NUSSIF through a selective recruitment process into the Execution Track as an Analyst. Selection is based on intellectual curiosity, financial acumen, and the drive to operate in a professional investment environment.',
   },
   {
     eyebrow: 'First Semester',
     heading: 'Trading Simulation Programme',
-    body: 'All incoming Trainee Analysts participate in the Trading Simulation Programme — a structured simulation environment designed to develop trading intuition, decision-making under uncertainty, and investment thesis construction. Simultaneously, each Trainee Analyst selects two Portfolio Managers to shadow on a weekly basis. These sessions are where analysts present their market intuition and analysis directly to the hosting PMs. Position management decisions during these sessions are left to the discretion of the Portfolio Manager.',
+    body: 'All Analysts participate in the Trading Simulation Programme, which provides a structured simulation environment designed to develop trading intuition, decision-making under uncertainty, and investment thesis construction. Simultaneously, each Analyst joins our Portfolio Managers on their weekly investment meetings. These sessions are where analysts present their market intuition and analysis directly to the hosting PMs. Position management decisions during these sessions are left to the discretion of the Portfolio Manager.',
   },
   {
     eyebrow: 'Second Semester',
     heading: 'Live Project Allocation',
-    body: "Throughout the semester, each Trainee Analyst is assigned distinct tasks, research projects, and analytical responsibilities. These are allocated by the Portfolio Managers they shadow, ensuring direct exposure to live investment decision-making processes across the fund's asset classes.",
+    body: "Throughout the semester, each Analyst is assigned distinct tasks, research projects, and analytical responsibilities. These are allocated by the Portfolio Managers they are under, ensuring direct exposure to live investment decision-making processes across the fund's asset classes.",
   },
   {
     eyebrow: 'Outcome',
     heading: 'Pathway to the Investing Teams',
     body: null,
-    callout: 'Outstanding Trainee Analysts will be invited to join the Investing Teams.',
+    callout: 'Outstanding Analysts will be invited to become a Portfolio Manager. The Analysts are evaluated based on their level of involvement, idea generation, as well as performance on the Simulation.',
   },
 ];
 
@@ -252,9 +252,9 @@ export default function ProgramPage() {
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             >
               <span className="eyebrow block mb-4" style={{ color: 'hsl(var(--gold))' }}>Structure</span>
-              <h2 className="heading-section mb-4">The Analyst Pipeline</h2>
+              <h2 className="heading-section mb-4">The Portfolio Manager Pipeline</h2>
               <p className="body-text max-w-xl">
-                From entry to the investing teams — a structured pathway of growth.
+                Investors at NUSSIF undergo a structured development process and progression, ensuring each member has the right pace of growth.
               </p>
             </motion.div>
 

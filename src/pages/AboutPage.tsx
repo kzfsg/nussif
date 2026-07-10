@@ -32,6 +32,7 @@ import qrtLogo from "@/assets/placements/qrt.png";
 import citadelPlacementLogo from "@/assets/placements/citadel.png";
 import gardaLogo from "@/assets/placements/garda.png";
 import capulaLogo from "@/assets/placements/capula.png";
+import ibkrLogo from "@/assets/partners/ibkr.png";
 
 const values = [
   {
@@ -110,6 +111,7 @@ const partners = [
   { name: "Point72", logo: point72Logo, url: "https://www.point72.com" },
   { name: "Massive", logo: massiveLogo, url: "https://www.massive.com" },
   { name: "Millennium", logo: millenniumLogo, url: "https://www.mlp.com" },
+  { name: "IBKR", logo: ibkrLogo, url: "https://www.interactivebrokers.com" },
 ];
 
 function StatCounter({
@@ -611,8 +613,7 @@ export default function AboutPage() {
                 href={p.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mx-12 md:mx-16 flex-shrink-0 transition-all duration-500 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:scale-105"
-              >
+                className="mx-12 md:mx-16 flex-shrink-0 transition-transform duration-500 hover:scale-105"              >
                 <img
                   src={p.logo}
                   alt={p.name}
