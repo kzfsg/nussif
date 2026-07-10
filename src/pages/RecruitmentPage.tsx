@@ -1,12 +1,31 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, useMotionValue, useSpring } from 'motion/react';
+import { motion, AnimatePresence, useMotionValue, useSpring } from 'motion/react';
 import { ArrowUpRight, ArrowDown } from 'lucide-react';
-import HeroSection from '@/components/HeroSection';
+import PageHero from '@/components/PageHero';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import heroImage from '@/assets/hero-trading.jpg';
 
-const APPLY_URL = 'https://forms.office.com/Pages/ShareFormPage.aspx?id=Xu-lWwkxd06Fvc_rDTR-ghbuzO_hwkFNmR1TLDctiJBUME1NVUdYQzNGNlVOSzdKQkhWSUY3MUI0UC4u&sharetoken=TGc4Xqw46sMkbulMbeRJ';
+const faqs = [
+  {
+    q: 'Can I apply to and be considered for more than one team?',
+    a: 'Yes, but you will only be allowed entry into one team. Think carefully and choose the role that fits your passions and skills best!',
+  },
+  {
+    q: 'Is financial markets experience or knowledge required?',
+    a: 'Financial markets knowledge or experience is advantaged but not strictly necessary, as long as you demonstrate a strong passion and knowledge in a particular domain that is relevant to global affairs, geopolitics, business, history and more. In fact, we highly encourage students who are able to showcase their passions in diverse fields to apply.',
+  },
+  {
+    q: 'Will I be disadvantaged for applying late?',
+    a: 'While we filter candidates on a rolling basis, we do not disadvantage students who were unable to apply early. Moreover, we still encourage all to apply as early as you can!',
+  },
+  {
+    q: 'How can I prepare for my interviews?',
+    a: 'Our Portfolio Managers and Directors conduct interviews based on the role requirements, as well as the content you have showcased to us on your CVs. Fundamentally, the interview is our opportunity to know more about yourself, so we encourage all applicants to refresh their experiences, because we would ask more about them! Overall, we hope you use the interview to showcase your passions and skillsets to us with confidence, and we look forward to hearing about your stories and experiences that have shaped you into a promising candidate.',
+  },
+];
+
+const APPLY_URL = 'https://www.google.com';
 
 interface Role {
   num: string;
@@ -22,52 +41,52 @@ const investingRoles: Role[] = [
     title: 'Equities Analyst',
     team: 'L/S Equities',
     teamLink: '/people#ls-equities',
-    desc: 'Generates investment ideas and strategies across Singapore and global equity markets, combining fundamental analysis with a keen sense of the structural global and sectoral undercurrents that allow the Equities team to generate excess returns.',
+    desc: 'Generate long and short ideas across Singapore and global equity markets — combining fundamental analysis with thematic conviction across L/S, event-driven, and relative value strategies.',
   },
   {
     num: '02',
     title: 'Macro Analyst',
     team: 'Global Macro',
     teamLink: '/people#global-macro-commodities',
-    desc: 'Develops a robust first principles understanding of global capital markets and economies, translating economic narratives into positioning across a range of asset classes.',
+    desc: 'Build discretionary macro views across fixed income, currencies, and equity indices — translating global economic narratives into positioned conviction across FICC markets.',
   },
   {
     num: '03',
     title: 'Systematic Strategies Analyst',
     team: 'Systematic Strategies',
     teamLink: '/people#systematic-strategies',
-    desc: "Leverages our range of data partnerships to embed quantitative, data-driven analysis into the fund's investment decisions. Focuses on signal research, generation and bringing a systematic dimension to the Investing teams.",
+    desc: "Embed quantitative, data-driven analysis into the fund's investment process — researching signals and lending a quantitative dimension to the asset pods' market views.",
   },
   {
     num: '04',
     title: 'Commodities Analyst',
     team: 'Commodities',
     teamLink: '/people#global-macro-commodities',
-    desc: 'Devises metals and energy market views grounded in both micro and macro fundamentals, as well as supply-demand imbalances, flows and cross-commodity relative value.',
+    desc: 'Trade energy and metals with strategies grounded in both micro and macro fundamentals — from supply-demand balances to positioning, flows, and cross-commodity relative value.',
   },
 ];
 
 const operationsRoles: Role[] = [
   {
     num: '05',
-    title: 'Risk & Infrastructure Analyst',
+    title: 'Developer Analyst',
     team: 'Operations',
     teamLink: '/people#operations',
-    desc: 'Builds and maintains the risk frameworks, tooling, and infrastructure that gives NUSSIF an institutional-grade oversight.',
+    desc: 'Build and maintain the systems, tooling, and infrastructure that give a live student fund institutional-grade oversight.',
   },
   {
     num: '06',
     title: 'Fund Development Analyst',
     team: 'Operations',
     teamLink: '/people#operations',
-    desc: "Drive the fund's long-term growth through partnerships, external relations, and the initiatives that expand NUSSIF's reach, standing, and capital base. Fund Development Analysts are responsible for the outreach, event management and relationship building between NUSSIF and senior leaders in industry, allowing them to build their own industry networks concurrently.",
+    desc: "Drive the fund's long-term growth — partnerships, external relations, and the initiatives that expand NUSSIF's reach, standing, and capital base.",
   },
   {
     num: '07',
     title: 'Marketing & Brand Analyst',
     team: 'Operations',
     teamLink: '/people#operations',
-    desc: 'Owns how NUSSIF shows up to the world, through an extensive understanding for the brand, content, and communications that reflect the standard of the fund behind them.',
+    desc: 'Own how NUSSIF shows up to the world — the brand, content, and communications that reflect the standard of the fund behind them.',
   },
 ];
 
@@ -262,12 +281,12 @@ function RoleRow({ role, index, dark = false }: { role: Role; index: number; dar
               {role.team}
             </span>
             <h3
-              className={`font-display font-medium mb-4 transition-colors duration-500 ${
+              className={`font-display font-medium mb-4 transition-all duration-500 group-hover:translate-x-2 ${
                 dark
                   ? 'text-primary-foreground group-hover:text-[hsl(var(--gold))]'
                   : 'text-foreground group-hover:text-primary'
               }`}
-              style={{ fontSize: 'clamp(1.5rem, 2.6vw, 2.25rem)' }}
+              style={{ fontSize: 'clamp(1.9rem, 3.4vw, 3rem)' }}
             >
               {role.title}
             </h3>
@@ -326,15 +345,138 @@ function RoleRow({ role, index, dark = false }: { role: Role; index: number; dar
   );
 }
 
+/* ─── FAQ accordion — a single item ─── */
+function FaqItem({
+  q,
+  a,
+  index,
+  open,
+  onToggle,
+}: {
+  q: string;
+  a: string;
+  index: number;
+  open: boolean;
+  onToggle: () => void;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-40px' }}
+      transition={{ delay: index * 0.05, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+      className="border-t border-border last:border-b"
+    >
+      <button
+        onClick={onToggle}
+        aria-expanded={open}
+        className="group w-full flex items-start gap-6 md:gap-10 py-7 md:py-9 text-left"
+      >
+        {/* Plus that rotates into an × */}
+        <span
+          className={`relative flex-shrink-0 mt-[0.35em] w-5 h-5 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            open ? 'rotate-[135deg]' : 'rotate-0'
+          }`}
+        >
+          <span
+            className={`absolute top-1/2 left-0 right-0 h-px -translate-y-1/2 transition-colors duration-300 ${
+              open ? 'bg-[hsl(var(--gold))]' : 'bg-foreground/70 group-hover:bg-foreground'
+            }`}
+          />
+          <span
+            className={`absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2 transition-colors duration-300 ${
+              open ? 'bg-[hsl(var(--gold))]' : 'bg-foreground/70 group-hover:bg-foreground'
+            }`}
+          />
+        </span>
+
+        <span
+          className={`flex-1 font-body font-normal leading-snug transition-colors duration-300 ${
+            open ? 'text-primary' : 'text-foreground group-hover:text-primary'
+          }`}
+          style={{ fontSize: 'clamp(1.05rem, 1.7vw, 1.4rem)' }}
+        >
+          {q}
+        </span>
+      </button>
+
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="overflow-hidden"
+          >
+            <p
+              className="pl-11 md:pl-[3.75rem] pr-4 pb-8 md:pb-10 -mt-1 font-body font-light text-muted-foreground leading-[1.9] max-w-3xl"
+              style={{ fontSize: 'var(--text-base)' }}
+            >
+              {a}
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
+}
+
+/* ─── FAQ section — single-open accordion, Millennium-style ─── */
+function RecruitmentFaqs() {
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+  return (
+    <section id="faqs" className="section-padding bg-background scroll-mt-24">
+      <div className="container-site">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-14 md:mb-20"
+        >
+          <div className="w-12 h-px bg-gold mb-10" />
+          <span className="eyebrow block mb-4" style={{ color: 'hsl(var(--gold))' }}>
+            FAQ
+          </span>
+          <h2 className="heading-section">Frequently Asked Questions</h2>
+        </motion.div>
+
+        <div>
+          {faqs.map((f, i) => (
+            <FaqItem
+              key={i}
+              index={i}
+              q={f.q}
+              a={f.a}
+              open={openIndex === i}
+              onToggle={() => setOpenIndex(openIndex === i ? null : i)}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function RecruitmentPage() {
   const revealRef = useScrollReveal();
 
   return (
     <div ref={revealRef}>
-      <HeroSection
+      <PageHero
         image={heroImage}
-        title="H2'2026 Analyst Recruitment"
-      />
+        title="Recruitment"
+        subtitle="Seven analyst seats across two divisions. One application. A live fund from day one."
+      >
+        <button
+          onClick={() => document.getElementById('apply')?.scrollIntoView({ behavior: 'smooth' })}
+          className="gold-link"
+        >
+          → Apply Now
+        </button>
+      </PageHero>
 
       {/* Opening statement + figures */}
       <section className="section-padding bg-background">
@@ -354,10 +496,39 @@ export default function RecruitmentPage() {
                 not spectators.
               </h2>
               <p className="body-text leading-[1.85]">
-                Every member of NUSSIF operates inside a live student fund with the growth and mentorship opportunities from practitioners across the industry.
-                Whether your instincts and passions lean toward the financial markets, global affairs, history and geopolitics or toward building the institution
+                Every member of NUSSIF operates inside a live fund — with real capital, real
+                accountability, and mentorship from practitioners across the global buy-side.
+                Whether your instincts lean toward markets or toward building the institution
                 behind them, there is a seat here designed for you to own.
               </p>
+            </motion.div>
+
+            <motion.div
+              className="lg:col-span-4 lg:col-start-9"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.15, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <div className="space-y-10">
+                {[
+                  { figure: '07', label: 'Open Positions' },
+                  { figure: '02', label: 'Divisions' },
+                  { figure: '01', label: 'Application' },
+                ].map((stat) => (
+                  <div key={stat.label} className="flex items-baseline gap-6 border-b border-border pb-6">
+                    <span
+                      className="font-display font-light leading-none"
+                      style={{ fontSize: 'clamp(2.5rem, 4vw, 3.5rem)', color: 'hsl(var(--gold))' }}
+                    >
+                      {stat.figure}
+                    </span>
+                    <span className="font-body text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                      {stat.label}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </motion.div>
           </div>
         </div>
@@ -382,8 +553,8 @@ export default function RecruitmentPage() {
               </div>
               <div className="lg:col-span-5 lg:col-start-8 flex items-end">
                 <p className="body-text">
-                  Our investing teams consist of four distinct departments that specialise in their unique asset classes. An Investment 
-                  Analyst researches, debates, and runs live positions across the markets they feel the most passion in.
+                  Four specialist pods, each lean and accountable for its own returns. Investing
+                  analysts research, debate, and help run live positions across global markets.
                 </p>
               </div>
             </motion.div>
@@ -439,6 +610,9 @@ export default function RecruitmentPage() {
         </div>
       </section>
 
+      {/* Frequently Asked Questions */}
+      <RecruitmentFaqs />
+
       {/* One application note */}
       <section className="py-20 md:py-24 bg-background">
         <div className="container-site text-center">
@@ -449,7 +623,8 @@ export default function RecruitmentPage() {
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
             className="font-display italic text-foreground text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
           >
-            We want the most passionate across NUS, no matter what field you might come from. Apply now to discover your fit.
+            However you see yourself contributing — every path into NUSSIF begins with the same
+            application.
           </motion.p>
         </div>
       </section>

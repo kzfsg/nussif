@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
@@ -12,17 +12,30 @@ const navItems = [
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const lastY = useRef(0);
   const location = useLocation();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 60);
+      // Recede while reading downward, return on any upward scroll
+      if (y > 400 && y - lastY.current > 6) {
+        setHidden(true);
+      } else if (lastY.current - y > 6 || y < 400) {
+        setHidden(false);
+      }
+      lastY.current = y;
+    };
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   useEffect(() => {
     setMobileOpen(false);
+    setHidden(false);
   }, [location]);
 
   // Prevent body scroll when mobile menu is open
@@ -36,10 +49,10 @@ export default function Navbar() {
   return (
     <>
       <motion.nav
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+        initial={{ y: -80 }}
+        animate={{ y: hidden && !mobileOpen ? -96 : 0 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-500 ${
           isTransparent
             ? 'bg-transparent border-b border-transparent'
             : 'bg-card/80 glass border-b border-border/50 shadow-sm'

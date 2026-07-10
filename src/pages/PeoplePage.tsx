@@ -1,9 +1,30 @@
-import { motion } from 'motion/react';
-import HeroSection from '@/components/HeroSection';
+import { motion, useScroll, useSpring, useTransform } from 'motion/react';
+import { useRef } from 'react';
+import PageHero from '@/components/PageHero';
 import PersonCard from '@/components/PersonCard';
 import TeamCapsule from '@/components/TeamCapsule';
-import { useScrollReveal } from '@/hooks/useScrollReveal';
 import heroImage from '@/assets/hero-singapore.jpg';
+
+const advisors = [
+  {
+    num: '01',
+    name: 'Adjunct Professor James Cheng',
+    role: 'Senior Advisor',
+    bio: 'Previously CEO & Senior Advisor to Morgan Stanley Investment Management, and CIO at Invesco Asia.',
+  },
+  {
+    num: '02',
+    name: 'Kwan Ng',
+    role: 'Senior Advisor',
+    bio: 'Currently Portfolio Manager at ExodusPoint. Formerly Senior Portfolio Manager at BlueCrest Capital Management, Head of FX Trading at Barclays, and Trader at Millennium.',
+  },
+  {
+    num: '03',
+    name: 'Professor Chen Kan',
+    role: 'Senior Advisor',
+    bio: 'Quantitative finance veteran and academic. Formerly Executive Director on the proprietary trading desk at JP Morgan, and Portfolio Manager at Capstone Investment Advisors and WorldQuant.',
+  },
+];
 
 const leadership = [
   { name: 'Sean Wong', role: 'Co-Head of Total Portfolios', email: 'sean_wong@u.nus.edu', linkedIn: 'https://linkedin.com', headshot: '/people/sean-wong.jpg' },
@@ -70,6 +91,9 @@ const investingCapsules = [
     ],
     analysts: [
       { name: 'Jun Yang', email: 'limjunyang@u.nus.edu', linkedIn: 'https://www.linkedin.com/in/jun-yang-lim/' },
+      { name: 'Qiao En', email: 'e1523469@u.nus.edu', linkedIn: 'https://www.linkedin.com/in/qiao-enn-chew261/' },
+      { name: 'Gabriel', email: 'gabrieltang@u.nus.edu' },
+      { name: 'Justin Cheong', email: 'justin.cheong@u.nus.edu', linkedIn: 'https://www.linkedin.com/in/justin-cheong-534aa51aa/' },
     ],
   },
 ];
@@ -83,17 +107,14 @@ const operationsCapsule = {
   imagePosition: 'center 15%',
   leadersLabel: 'Leadership',
   leaders: [
-    { name: 'Senyi', role: 'Head of Risk & Infrastructure', email: 'senyi@u.nus.edu', linkedIn: 'https://linkedin.com', headshot: '/people/senyi.jpg' },
-    { name: 'Enzo Chung', role: 'Head of Infrastructure', email: 'enzo.chung@u.nus.edu', linkedIn: 'https://www.linkedin.com/in/enzochung/', headshot: '/people/enzo-chung.jpg' },
+    { name: 'Senyi', role: 'Head of Risk', email: 'senyi@u.nus.edu', linkedIn: 'https://linkedin.com', headshot: '/people/senyi.jpg' },
+    { name: 'Enzo Chung', role: 'Head of Developers', email: 'enzo.chung@u.nus.edu', linkedIn: 'https://www.linkedin.com/in/enzochung/', headshot: '/people/enzo-chung.jpg' },
     { name: 'Davin', role: 'Head of Externals', email: 'davinchang@u.nus.edu', headshot: '/people/davin.jpg' },
     { name: 'Helena', role: 'Fund Development Director', email: 'helena.tan@u.nus.edu', headshot: '/people/helena.jpg' },
   ],
   analysts: [
-    { name: 'Qiao En', email: 'e1523469@u.nus.edu', linkedIn: 'https://www.linkedin.com/in/qiao-enn-chew261/' },
     { name: 'Elina (Ling Xue)', email: 'E1304487@u.nus.edu', linkedIn: 'https://www.linkedin.com/in/elinayilingxue/' },
     { name: 'Samuel', email: 'E1357105@u.nus.edu' },
-    { name: 'Gabriel', email: 'gabrieltang@u.nus.edu' },
-    { name: 'Justin Cheong', email: 'justin.cheong@u.nus.edu', linkedIn: 'https://www.linkedin.com/in/justin-cheong-534aa51aa/' },
     { name: 'Daron', email: 'e1121489@u.nus.edu', linkedIn: 'https://www.linkedin.com/in/daron-oh/' },
     { name: 'Wai Hin', email: 'wongwaihin@u.nus.edu', linkedIn: 'https://www.linkedin.com/in/wai-hin-wong26/' },
     { name: 'Kiefer', email: 'kiefer.ong@u.nus.edu', linkedIn: 'https://www.linkedin.com/in/kiefer-ong/' },
@@ -110,77 +131,110 @@ const operationsCapsule = {
   ],
 };
 
-export default function PeoplePage() {
-  const revealRef = useScrollReveal();
+/* Full-width image divider with true scroll parallax */
+function ParallaxDivider({ src, alt }: { src: string; alt: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start end', 'end start'],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ['-12%', '12%']);
 
   return (
-    <div ref={revealRef}>
-      <HeroSection
+    <section ref={ref} className="relative h-[35vh] md:h-[50vh] overflow-hidden">
+      <motion.div className="absolute -inset-y-[14%] inset-x-0" style={{ y }}>
+        <img src={src} alt={alt} className="w-full h-full object-cover" />
+      </motion.div>
+      <div className="absolute inset-0 bg-navy-deep/40" />
+    </section>
+  );
+}
+
+export default function PeoplePage() {
+  const pageRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: pageRef, offset: ['start start', 'end end'] });
+  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
+
+  return (
+    <div ref={pageRef}>
+      {/* Scroll progress bar */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-[2px] z-[60] origin-left"
+        style={{ scaleX, backgroundColor: 'hsl(var(--gold))' }}
+      />
+
+      <PageHero
         image={heroImage}
         title="Our People"
         subtitle="A student-led investment fund's most important asset is the quality and passion of its people."
       />
 
-      {/* Senior Advisors */}
-      <section className="section-padding bg-background">
-        <div className="container-site">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <div className="w-16 h-px bg-[hsl(var(--gold))] mb-10" />
-            <h2 className="heading-section mb-4">Senior Advisors</h2>
-            <p className="body-text max-w-2xl mb-20">
-              Guided by industry practitioners with decades of experience in global finance.
-            </p>
-          </motion.div>
+      {/* Senior Advisors — the board, on deep navy */}
+      <section className="bg-navy-deep relative overflow-hidden">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: 'radial-gradient(ellipse 60% 80% at 90% 10%, hsl(37 45% 62% / 0.05), transparent 55%)',
+          }}
+        />
+        <div className="container-site relative">
+          <div className="pt-24 pb-28 md:pt-32 md:pb-36">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+              className="mb-20"
+            >
+              <div className="w-12 h-px bg-gold mb-10" />
+              <h2 className="heading-section text-primary-foreground mb-4">Senior Advisors</h2>
+              <p className="font-body font-light text-primary-foreground/55 leading-[1.7] max-w-2xl" style={{ fontSize: 'var(--text-base)' }}>
+                Guided by industry practitioners with decades of experience in global finance.
+              </p>
+            </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
-            {[
-              {
-                name: 'Adjunct Professor James Cheng',
-                role: 'Senior Advisor',
-                bio: 'Previously CEO & Senior Advisor to Morgan Stanley Investment Management, and CIO at Invesco Asia.',
-              },
-              {
-                name: 'Kwan Ng',
-                role: 'Senior Advisor',
-                bio: 'Currently Portfolio Manager at ExodusPoint. Formerly Senior Portfolio Manager at BlueCrest Capital Management, Head of FX Trading at Barclays, and Trader at Millennium.',
-              },
-              {
-                name: 'Professor Chen Kan',
-                role: 'Senior Advisor',
-                bio: 'Quantitative finance veteran and academic. Formerly Executive Director on the proprietary trading desk at JP Morgan, and Portfolio Manager at Capstone Investment Advisors and WorldQuant.',
-              },
-            ].map((advisor, i) => (
-              <motion.div
-                key={advisor.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.15, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="group cursor-default"
-              >
-                <div className="w-0 h-px bg-[hsl(var(--gold)/0.4)] mb-8 transition-all duration-700 group-hover:w-12" />
-                <h3 className="font-display font-medium text-foreground text-2xl mb-2 transition-colors duration-500 group-hover:text-primary">
-                  {advisor.name}
-                </h3>
-                <p className="text-[10px] tracking-[0.25em] uppercase text-[hsl(var(--gold))] font-body mt-2 mb-6">
-                  {advisor.role}
-                </p>
-                <p className="body-text text-sm text-foreground/65 leading-[1.8]">
-                  {advisor.bio}
-                </p>
-              </motion.div>
-            ))}
+            <div>
+              {advisors.map((advisor, i) => (
+                <motion.div
+                  key={advisor.name}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-40px' }}
+                  transition={{ delay: i * 0.08, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+                  className="group relative border-t border-white/10 last:border-b grid grid-cols-[3rem_1fr] md:grid-cols-[6rem_1.1fr_1.3fr] gap-4 md:gap-12 py-10 md:py-14 transition-colors duration-500 hover:bg-white/[0.03]"
+                >
+                  <span
+                    className="font-display font-light leading-none"
+                    style={{ fontSize: 'clamp(1.4rem, 2.2vw, 2rem)', color: 'hsl(var(--gold) / 0.5)' }}
+                  >
+                    {advisor.num}
+                  </span>
+                  <div>
+                    <h3
+                      className="font-display font-medium text-primary-foreground leading-snug transition-transform duration-500 group-hover:translate-x-2"
+                      style={{ fontSize: 'clamp(1.4rem, 2.4vw, 2.1rem)' }}
+                    >
+                      {advisor.name}
+                    </h3>
+                    <p
+                      className="mt-3 font-body text-[10px] tracking-[0.3em] uppercase"
+                      style={{ color: 'hsl(var(--gold))' }}
+                    >
+                      {advisor.role}
+                    </p>
+                  </div>
+                  <p className="col-start-2 md:col-start-3 font-body font-light text-sm text-primary-foreground/50 leading-[1.9] transition-colors duration-500 group-hover:text-primary-foreground/75 max-w-xl">
+                    {advisor.bio}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Leadership */}
-      <section id="leadership" className="section-padding bg-muted/30">
+      <section id="leadership" className="section-padding bg-background scroll-mt-24">
         <div className="container-site">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -195,7 +249,7 @@ export default function PeoplePage() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 max-w-2xl mx-auto">
             {leadership.map((m, i) => (
               <motion.div
                 key={m.name}
@@ -211,41 +265,31 @@ export default function PeoplePage() {
         </div>
       </section>
 
-      {/* Full-width image divider */}
-      <section className="relative h-[35vh] md:h-[45vh] overflow-hidden">
-        <motion.div
-          initial={{ scale: 1.1 }}
-          whileInView={{ scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute inset-0"
-        >
-          <img
-            src="/people-investing.jpg"
-            alt="Modern office workspace"
-            className="w-full h-full object-cover"
-          />
-        </motion.div>
-        <div className="absolute inset-0 bg-navy-deep/40" />
-      </section>
+      {/* Full-width parallax divider */}
+      <ParallaxDivider src="/people-investing.jpg" alt="Modern office workspace" />
 
       {/* Investing Teams */}
-      <section id="investing" className="section-padding bg-background">
+      <section id="investing" className="section-padding bg-background scroll-mt-24">
         <div className="container-site">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-20"
           >
-            <span className="eyebrow block mb-4" style={{ color: 'hsl(var(--gold))' }}>Investing</span>
-            <h2 className="heading-section mb-4">Investing Teams</h2>
-            <p className="body-text max-w-3xl mb-20">
-              Four specialist pods operating across global equities, macro, commodities, and systematic strategies — each pod lean, accountable, and responsible for their own returns.
-            </p>
+            <div className="lg:col-span-6">
+              <span className="eyebrow block mb-4" style={{ color: 'hsl(var(--gold))' }}>Investing</span>
+              <h2 className="heading-section">Investing Teams</h2>
+            </div>
+            <div className="lg:col-span-5 lg:col-start-8 flex items-end">
+              <p className="body-text">
+                Four specialist pods operating across global equities, macro, commodities, and systematic strategies — each pod lean, accountable, and responsible for their own returns.
+              </p>
+            </div>
           </motion.div>
 
-          <div className="space-y-8">
+          <div className="space-y-10">
             {investingCapsules.map((capsule, i) => (
               <motion.div
                 key={capsule.id}
@@ -257,6 +301,7 @@ export default function PeoplePage() {
                 transition={{ delay: i * 0.08, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
               >
                 <TeamCapsule
+                  index={String(i + 1).padStart(2, '0')}
                   name={capsule.name}
                   description={capsule.description}
                   teamPhoto={capsule.teamPhoto}
@@ -272,19 +317,24 @@ export default function PeoplePage() {
       </section>
 
       {/* Operations */}
-      <section id="operations" className="section-padding bg-muted/30">
+      <section id="operations" className="section-padding bg-muted/30 scroll-mt-24">
         <div className="container-site">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-20"
           >
-            <span className="eyebrow block mb-4" style={{ color: 'hsl(var(--gold))' }}>Operations</span>
-            <h2 className="heading-section mb-4">Operations</h2>
-            <p className="body-text max-w-3xl mb-20">
-              The backbone of the fund — ensuring robust infrastructure, stakeholder engagement, and long-term fund development.
-            </p>
+            <div className="lg:col-span-6">
+              <span className="eyebrow block mb-4" style={{ color: 'hsl(var(--gold))' }}>Operations</span>
+              <h2 className="heading-section">Operations</h2>
+            </div>
+            <div className="lg:col-span-5 lg:col-start-8 flex items-end">
+              <p className="body-text">
+                The backbone of the fund — ensuring robust infrastructure, stakeholder engagement, and long-term fund development.
+              </p>
+            </div>
           </motion.div>
 
           <motion.div
@@ -294,6 +344,7 @@ export default function PeoplePage() {
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           >
             <TeamCapsule
+              index="04"
               name={operationsCapsule.name}
               description={operationsCapsule.description}
               teamPhoto={operationsCapsule.teamPhoto}
@@ -307,11 +358,17 @@ export default function PeoplePage() {
       </section>
 
       {/* Trainee note */}
-      <section className="py-20 bg-muted/30">
+      <section className="py-20 md:py-24 bg-muted/30">
         <div className="container-site text-center">
-          <p className="font-display italic text-foreground text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            className="font-display italic text-foreground text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
+          >
             Outstanding Trainee Analysts from the Execution Track will be invited to join the Investing Teams. Trainee Analyst cohort members are not listed here pending graduation from the programme.
-          </p>
+          </motion.p>
         </div>
       </section>
     </div>

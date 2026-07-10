@@ -9,7 +9,7 @@ const investingTeams = [
 ];
 
 const operationsTeams = [
-  { name: "Risk & Infrastructure", anchor: "operations" },
+  { name: "Developers", anchor: "operations" },
   { name: "Externals", anchor: "operations" },
   { name: "Fund Development", anchor: "operations" },
 ];

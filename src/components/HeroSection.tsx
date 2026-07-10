@@ -28,9 +28,11 @@ export default function HeroSection({ image, title, subtitle, fullHeight = false
   const contentY = useTransform(scrollYProgress, [0, 0.5], [0, 60]);
 
   useEffect(() => {
-    const timer = setTimeout(() => setVisible(true), 200);
+    const timer = setTimeout(() => setVisible(true), 350);
     return () => clearTimeout(timer);
   }, []);
+
+  const words = title.split(' ');
 
   return (
     <section
@@ -89,17 +91,32 @@ export default function HeroSection({ image, title, subtitle, fullHeight = false
           }`}
         />
 
+        {/* Word-by-word masked rise reveal */}
         <h1
-          className={`font-display font-medium text-white tracking-[0.08em] leading-[1.1] transition-all duration-[1.2s] ease-[cubic-bezier(0.16,1,0.3,1)] ${
-            visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
+          className="font-display font-medium text-white tracking-[0.08em] leading-[1.1]"
           style={{ fontSize: 'clamp(2.5rem, 6vw, 5rem)' }}
         >
-          {title}
+          {words.map((word, i) => (
+            <span
+              key={i}
+              className="inline-block overflow-hidden align-bottom pb-[0.14em] -mb-[0.14em]"
+            >
+              <span
+                className="inline-block transition-transform duration-[1.1s] ease-[cubic-bezier(0.16,1,0.3,1)]"
+                style={{
+                  transform: visible ? 'translateY(0)' : 'translateY(115%)',
+                  transitionDelay: `${0.1 + i * 0.1}s`,
+                }}
+              >
+                {word}
+                {i < words.length - 1 ? '\u00A0' : ''}
+              </span>
+            </span>
+          ))}
         </h1>
 
         <p
-          className={`mt-7 font-body font-light text-white/80 max-w-2xl mx-auto leading-relaxed transition-all duration-[1.2s] delay-200 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          className={`mt-7 font-body font-light text-white/80 max-w-2xl mx-auto leading-relaxed transition-all duration-[1.2s] delay-[450ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
             visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
           }`}
           style={{ fontSize: 'clamp(0.95rem, 1.3vw, 1.15rem)' }}
@@ -110,7 +127,7 @@ export default function HeroSection({ image, title, subtitle, fullHeight = false
         {/* Children with delayed reveal */}
         {children && (
           <div
-            className={`transition-all duration-[1.2s] delay-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            className={`transition-all duration-[1.2s] delay-[650ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
               visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
             }`}
           >

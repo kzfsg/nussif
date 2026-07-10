@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { motion, useScroll, useSpring } from "motion/react";
+import { motion, useScroll, useSpring, useTransform } from "motion/react";
 import { useRef, useState } from "react";
 import HeroSection from "@/components/HeroSection";
 import VideoModal from "@/components/VideoModal";
@@ -137,7 +137,7 @@ function StatCounter({
     >
       <span className="font-display font-light text-primary-foreground text-7xl md:text-8xl leading-none tracking-tight tabular-nums">
         {count}
-        {suffix}
+        <span style={{ color: 'hsl(var(--gold))' }}>{suffix}</span>
       </span>
       <span className="mt-6 font-display font-medium text-white text-xl md:text-2xl tracking-wide">
         {label}
@@ -151,6 +151,97 @@ function StatCounter({
   );
 }
 
+/* Full-width image break with true scroll parallax */
+function ParallaxBreak({ src, alt, heightClass }: { src: string; alt: string; heightClass: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start end', 'end start'],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ['-12%', '12%']);
+
+  return (
+    <section ref={ref} className={`relative ${heightClass} overflow-hidden`}>
+      <motion.div className="absolute -inset-y-[14%] inset-x-0" style={{ y }}>
+        <img src={src} alt={alt} className="w-full h-full object-cover" />
+      </motion.div>
+      <div className="absolute inset-0 bg-[hsl(220,55%,8%,0.45)]" />
+    </section>
+  );
+}
+
+/* Culture value card with cursor-tracking spotlight */
+function ValueCard({ value, index }: { value: (typeof values)[number]; index: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const el = ref.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    el.style.setProperty('--spot-x', `${e.clientX - rect.left}px`);
+    el.style.setProperty('--spot-y', `${e.clientY - rect.top}px`);
+  };
+
+  return (
+    <motion.div
+      ref={ref}
+      onMouseMove={onMove}
+      initial={{ opacity: 0, y: 50, scale: 0.95 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, margin: '-30px' }}
+      transition={{ delay: index * 0.1, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+      className="group relative cursor-default overflow-hidden"
+      style={{
+        backgroundColor: 'rgba(255,255,255,0.02)',
+        border: '1px solid rgba(255,255,255,0.05)',
+      }}
+    >
+      {/* Cursor spotlight */}
+      <div
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+        style={{
+          background: 'radial-gradient(300px circle at var(--spot-x, 50%) var(--spot-y, 50%), hsl(37 45% 62% / 0.08), transparent 70%)',
+        }}
+      />
+      <div
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
+        style={{ boxShadow: 'inset 0 0 0 1px hsl(var(--gold) / 0.2)' }}
+      />
+
+      {/* Large gold watermark number */}
+      <span
+        className="absolute top-6 right-8 font-display font-light select-none transition-all duration-700 group-hover:opacity-[0.45] group-hover:scale-110 pointer-events-none"
+        style={{
+          fontSize: 'clamp(5rem, 8vw, 8rem)',
+          color: 'hsl(var(--gold))',
+          opacity: 0.3,
+          lineHeight: 1,
+        }}
+      >
+        {value.num}
+      </span>
+
+      <div className="relative px-10 py-14 md:py-16">
+        {/* Small eyebrow number — full gold */}
+        <span
+          className="text-[10px] tracking-[0.25em] uppercase font-body transition-colors duration-500"
+          style={{ color: 'hsl(var(--gold))' }}
+        >
+          {value.num}
+        </span>
+
+        <h3 className="font-display font-medium text-white text-2xl lg:text-3xl mt-6 mb-4 tracking-wide">
+          {value.title}
+        </h3>
+        <div className="w-0 h-px mb-6 transition-all duration-700 group-hover:w-12" style={{ backgroundColor: 'hsl(var(--gold) / 0.5)' }} />
+        <p className="font-body text-sm text-white/40 leading-[1.8] transition-colors duration-500 group-hover:text-white/65 max-w-sm">
+          {value.desc}
+        </p>
+      </div>
+    </motion.div>
+  );
+}
+
 export default function AboutPage() {
   const revealRef = useScrollReveal();
   const pageRef = useRef<HTMLDivElement>(null);
@@ -160,7 +251,7 @@ export default function AboutPage() {
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
 
   return (
-    <div ref={(el) => { revealRef.current = el; (pageRef as any).current = el; }}>
+    <div ref={(el) => { revealRef.current = el; (pageRef as React.MutableRefObject<HTMLDivElement | null>).current = el; }}>
       {/* Scroll progress bar */}
       <motion.div
         className="fixed top-0 left-0 right-0 h-[2px] z-[60] origin-left"
@@ -185,8 +276,15 @@ export default function AboutPage() {
       </HeroSection>
 
       {/* Stats — dark navy strip */}
-      <section className="bg-primary">
-        <div className="container-site">
+      <section className="bg-primary relative overflow-hidden">
+        {/* Faint radial gold wash */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: 'radial-gradient(ellipse 60% 80% at 85% 20%, hsl(37 45% 62% / 0.05), transparent 60%)',
+          }}
+        />
+        <div className="container-site relative">
           <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-primary-foreground/10">
             <StatCounter value={35} suffix="+" label="Members" delay={0} />
             <StatCounter value={25} suffix="+" label="Analysts" delay={0.1} />
@@ -213,39 +311,45 @@ export default function AboutPage() {
         thumbnailUrl="https://i.vimeocdn.com/video/2130738176-ba696526f900a41a6a9305fe38df112d76e67f15047bd3e1941bbbaba103f600-d_640?region=us"
       />
 
-      {/* Who We Are */}
+      {/* Who We Are — pinned statement, scrolling chapters */}
       <section id="who-we-are" className="section-padding bg-background overflow-hidden">
         <div className="container-site">
           <div className="w-12 h-px bg-gold mb-16 fade-up" />
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
-            <div className="lg:col-span-4 fade-up">
-              <p className="font-display font-light italic text-foreground text-3xl md:text-4xl lg:text-[2.75rem] leading-[1.25] tracking-wide">
-                Forging the next generation of NUS and Finance in Asia.
-              </p>
-              <motion.div
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.5, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                className="mt-10 w-8 h-px origin-left"
-                style={{ backgroundColor: 'hsl(var(--gold) / 0.5)' }}
-              />
+            <div className="lg:col-span-4">
+              {/* Statement stays pinned while the three chapters scroll past */}
+              <div className="lg:sticky lg:top-32 fade-up">
+                <p className="font-display font-light italic text-foreground text-3xl md:text-4xl lg:text-[2.75rem] leading-[1.25] tracking-wide">
+                  Forging the next generation of NUS and Finance in Asia.
+                </p>
+                <motion.div
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.5, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                  className="mt-10 w-8 h-px origin-left"
+                  style={{ backgroundColor: 'hsl(var(--gold) / 0.5)' }}
+                />
+              </div>
             </div>
 
             <div
-              className="lg:col-span-6 lg:col-start-7 space-y-16 fade-up"
+              className="lg:col-span-6 lg:col-start-7 space-y-20 fade-up"
               style={{ transitionDelay: "0.1s" }}
             >
               {[
                 {
+                  num: "01",
                   title: "Background",
                   text: "NUSSIF was founded by individuals passionate about understanding the world, aiming to bring real, professional investment opportunities to NUS students passionate about careers in the financial industry.",
                 },
                 {
+                  num: "02",
                   title: "Our Purpose",
                   text: "Drawing inspiration from leading global practices and internship experiences across hedge funds and trading desks, we are determined to build a platform for active professional and personal growth through the management of live capital, industry connections, and genuine member ownership.",
                 },
                 {
+                  num: "03",
                   title: "Our Vision",
                   text: "To become an institution where our members are bold, future-ready leaders in industry and government, building a network of illustrious alumni who actively give back to the NUS community.",
                 },
@@ -258,6 +362,18 @@ export default function AboutPage() {
                   transition={{ delay: i * 0.15, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
                   className="group relative pl-8 border-l-2 border-transparent hover:border-[hsl(var(--gold)/0.4)] transition-all duration-700"
                 >
+                  {/* Ghost chapter numeral */}
+                  <span
+                    className="absolute -top-8 right-0 font-display font-light select-none pointer-events-none transition-opacity duration-700 group-hover:opacity-[0.14]"
+                    style={{
+                      fontSize: 'clamp(4rem, 6vw, 6rem)',
+                      color: 'hsl(var(--gold))',
+                      opacity: 0.07,
+                      lineHeight: 1,
+                    }}
+                  >
+                    {block.num}
+                  </span>
                   <p className="text-[10px] tracking-[0.25em] uppercase font-body mb-4" style={{ color: 'hsl(var(--gold))' }}>
                     {block.title}
                   </p>
@@ -271,23 +387,12 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Full-width image break */}
-      <section className="relative h-[50vh] md:h-[60vh] overflow-hidden">
-        <motion.div
-          initial={{ scale: 1.15 }}
-          whileInView={{ scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute inset-0"
-        >
-          <img
-            src="/about-buildings.jpg"
-            alt="Financial district skyline"
-            className="w-full h-full object-cover"
-          />
-        </motion.div>
-        <div className="absolute inset-0 bg-[hsl(220,55%,8%,0.45)]" />
-      </section>
+      {/* Full-width parallax image break */}
+      <ParallaxBreak
+        src="/about-buildings.jpg"
+        alt="Financial district skyline"
+        heightClass="h-[50vh] md:h-[60vh]"
+      />
 
       {/* Org Structure */}
       <section className="section-padding bg-background">
@@ -322,76 +427,18 @@ export default function AboutPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-[1px]">
             {values.map((v, i) => (
-              <motion.div
-                key={v.num}
-                initial={{ opacity: 0, y: 50, scale: 0.95 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true, margin: '-30px' }}
-                transition={{ delay: i * 0.1, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-                className="group relative cursor-default overflow-hidden"
-                style={{
-                  backgroundColor: 'rgba(255,255,255,0.02)',
-                  border: '1px solid rgba(255,255,255,0.05)',
-                }}
-              >
-                <div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
-                  style={{ boxShadow: 'inset 0 0 0 1px hsl(var(--gold) / 0.2)' }}
-                />
-
-                {/* Large gold watermark number — opacity raised so it's visible */}
-                <span
-                  className="absolute top-6 right-8 font-display font-light select-none transition-all duration-700 group-hover:opacity-[0.45] group-hover:scale-110"
-                  style={{
-                    fontSize: 'clamp(5rem, 8vw, 8rem)',
-                    color: 'hsl(var(--gold))',
-                    opacity: 0.3,
-                    lineHeight: 1,
-                  }}
-                >
-                  {v.num}
-                </span>
-
-                <div className="relative px-10 py-14 md:py-16">
-                  {/* Small eyebrow number — full gold */}
-                  <span
-                    className="text-[10px] tracking-[0.25em] uppercase font-body transition-colors duration-500"
-                    style={{ color: 'hsl(var(--gold))' }}
-                  >
-                    {v.num}
-                  </span>
-
-                  <h3 className="font-display font-medium text-white text-2xl lg:text-3xl mt-6 mb-4 tracking-wide">
-                    {v.title}
-                  </h3>
-                  <div className="w-0 h-px mb-6 transition-all duration-700 group-hover:w-12" style={{ backgroundColor: 'hsl(var(--gold) / 0.5)' }} />
-                  <p className="font-body text-sm text-white/40 leading-[1.8] transition-colors duration-500 group-hover:text-white/65 max-w-sm">
-                    {v.desc}
-                  </p>
-                </div>
-              </motion.div>
+              <ValueCard key={v.num} value={v} index={i} />
             ))}
           </div>
         </div>
       </section>
 
-      {/* Second full-width image break */}
-      <section className="relative h-[45vh] md:h-[55vh] overflow-hidden">
-        <motion.div
-          initial={{ scale: 1.15 }}
-          whileInView={{ scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute inset-0"
-        >
-          <img
-            src="/about-mid.jpg"
-            alt="Professional environment"
-            className="w-full h-full object-cover"
-          />
-        </motion.div>
-        <div className="absolute inset-0 bg-[hsl(220,55%,8%,0.5)]" />
-      </section>
+      {/* Second full-width parallax image break */}
+      <ParallaxBreak
+        src="/about-mid.jpg"
+        alt="Professional environment"
+        heightClass="h-[45vh] md:h-[55vh]"
+      />
 
       {/* Achievements */}
       <section id="achievements" className="section-padding bg-background">
@@ -524,7 +571,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Partners */}
+      {/* Partners — cinematic marquee */}
       <section
         id="partners"
         className="section-padding bg-background border-t border-border"
@@ -547,34 +594,34 @@ export default function AboutPage() {
             className="w-16 h-px mx-auto mb-20 origin-center"
             style={{ backgroundColor: 'hsl(var(--gold) / 0.5)' }}
           />
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 1 }}
-            className="flex flex-wrap items-center justify-center gap-16 md:gap-24"
-          >
-            {partners.map((p, i) => (
-              <motion.a
-                key={p.name}
+        </div>
+
+        {/* Full-bleed infinite marquee — pauses on hover */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3, duration: 1 }}
+          className="marquee-mask"
+        >
+          <div className="marquee-track items-center py-6">
+            {[...partners, ...partners, ...partners, ...partners].map((p, i) => (
+              <a
+                key={`${p.name}-${i}`}
                 href={p.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 + i * 0.08, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className="transition-transform duration-500 hover:scale-110"
+                className="mx-12 md:mx-16 flex-shrink-0 transition-all duration-500 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:scale-105"
               >
                 <img
                   src={p.logo}
                   alt={p.name}
                   className="h-10 md:h-12 w-auto object-contain"
                 />
-              </motion.a>
+              </a>
             ))}
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </section>
     </div>
   );
