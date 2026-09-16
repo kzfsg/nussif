@@ -1,0 +1,160 @@
+<header class="topbar">
+  <a class="brand" href="#" aria-label="NUSSIF team overview">
+    <span>
+      Explore the fund
+      <span class="brand-sub">THE TEAM DIRECTORY</span>
+    </span>
+  </a>
+
+  <div class="period">
+    <span>AY26/27</span>
+    <span class="period-divider"></span>
+    <span>SEMESTER 01</span>
+  </div>
+
+  <div class="search-wrap">
+    <div class="search-field">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.6"
+        aria-hidden="true"
+      >
+        <circle cx="10.5" cy="10.5" r="6.5"></circle>
+        <path d="m16 16 4 4"></path>
+      </svg>
+
+      <input
+        id="search"
+        autocomplete="off"
+        placeholder="Find a person or team"
+        aria-label="Find a person or team"
+        role="combobox"
+        aria-autocomplete="list"
+        aria-controls="search-results"
+        aria-expanded="false"
+      />
+
+      <kbd>/</kbd>
+    </div>
+
+    <div
+      id="search-results"
+      class="search-results"
+      role="listbox"
+      hidden
+    ></div>
+  </div>
+</header>
+
+<div class="app-shell">
+  <aside class="sidebar" aria-label="Team directory">
+    <div class="directory-heading">
+      <span class="eyebrow">DIRECTORY</span>
+      <span class="directory-total">08</span>
+    </div>
+
+    <nav id="team-nav" aria-label="Teams"></nav>
+
+    <div class="sidebar-bottom">
+      <span class="small-label">ONE FUND. MANY PERSPECTIVES.</span>
+
+      <div class="fund-tally">
+        <span id="member-total"></span>
+        <span>people<br />across the fund</span>
+      </div>
+
+      <div class="sidebar-rule"></div>
+
+      <span class="small-label">
+        NATIONAL UNIVERSITY<br />
+        OF SINGAPORE
+      </span>
+    </div>
+  </aside>
+
+  <div id="main" tabindex="-1">
+    <section
+      id="overview"
+      class="overview"
+      aria-labelledby="overview-title"
+    >
+      <div class="view-heading">
+        <div>
+          <p class="eyebrow">THE PEOPLE BEHIND THE FUND</p>
+          <h2 id="overview-title">
+            The people.<br />
+            <span>The perspectives.</span>
+          </h2>
+        </div>
+
+        <div class="view-index">
+          <span class="edition-label">THE DIRECTORY</span>
+          AY26/27 <span>— S01</span>
+        </div>
+      </div>
+
+      <div id="atlas" class="atlas" aria-label="Interactive team atlas">
+        <canvas id="sculpture" aria-hidden="true"></canvas>
+
+        <div
+          class="atlas-hover-label"
+          id="atlas-hover-label"
+          aria-hidden="true"
+        ></div>
+
+        <div class="sculpture-label" aria-hidden="true">
+          <span>NUSSIF</span>
+          <small>AY26 / 27</small>
+        </div>
+
+        <div id="team-cards"></div>
+      </div>
+
+      <div class="overview-footer">
+        <span>
+          <svg
+            class="motion-symbol"
+            viewBox="0 0 24 24"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M5 7c4-5 13-3 14 3M19 7v3h-3M19 17C15 22 6 20 5 14M5 17v-3h3"
+              stroke="currentColor"
+              stroke-width="1.3"
+            ></path>
+          </svg>
+
+          <span id="motion-caption">
+            Explore a team to meet its people
+          </span>
+        </span>
+
+        <span class="small-label">
+          SELECT A TEAM TO EXPLORE
+          <span class="text-arrow">↗</span>
+        </span>
+      </div>
+    </section>
+
+    <section
+      id="team-view"
+      class="team-view"
+      aria-labelledby="team-title"
+      hidden
+    ></section>
+  </div>
+</div>
+
+<div id="profile-backdrop" class="profile-backdrop" hidden></div>
+
+<dialog
+  id="profile"
+  class="profile"
+  aria-labelledby="profile-name"
+  hidden
+></dialog>
+
+<div id="announcer" class="sr-only" aria-live="polite"></div>
