@@ -1,0 +1,755 @@
+{
+  "id": 1,
+  "type": "root",
+  "name": "HEADS",
+  "role": "Fund Leadership",
+  "email": "",
+  "year": "",
+  "fac": "",
+  "key": "",
+  "children": [
+    {
+      "id": 2,
+      "type": "person",
+      "name": "Rave Lai",
+      "role": "Co-Head",
+      "email": "ravelai@u.nus.edu",
+      "year": "3",
+      "fac": "FOS",
+      "key": "",
+      "children": []
+    },
+    {
+      "id": 3,
+      "type": "person",
+      "name": "Sean Wong",
+      "role": "Co-Head",
+      "email": "sean_wong@u.nus.edu",
+      "year": "4",
+      "fac": "SOC",
+      "key": "",
+      "children": []
+    },
+    {
+      "id": 4,
+      "type": "unit",
+      "name": "GLOBAL RESEARCH",
+      "role": "Autonomous Unit",
+      "email": "",
+      "year": "",
+      "fac": "",
+      "key": "gr",
+      "children": [
+        {
+          "id": 5,
+          "type": "person",
+          "name": "Danish",
+          "role": "Research Analyst",
+          "email": "",
+          "year": "2",
+          "fac": "Law",
+          "key": "",
+          "children": []
+        },
+        {
+          "id": 6,
+          "type": "person",
+          "name": "Erica",
+          "role": "Research Analyst",
+          "email": "",
+          "year": "3",
+          "fac": "Law",
+          "key": "",
+          "children": []
+        },
+        {
+          "id": 7,
+          "type": "person",
+          "name": "Jon",
+          "role": "Research Analyst",
+          "email": "",
+          "year": "3",
+          "fac": "Law",
+          "key": "",
+          "children": []
+        },
+        {
+          "id": 8,
+          "type": "person",
+          "name": "Xin Rong",
+          "role": "Research Analyst",
+          "email": "",
+          "year": "3",
+          "fac": "Political Science",
+          "key": "",
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "type": "dept",
+      "name": "EQUITIES",
+      "role": "",
+      "email": "",
+      "year": "",
+      "fac": "",
+      "key": "equities",
+      "children": [
+        {
+          "id": 10,
+          "type": "person",
+          "name": "Ke Qi Yang",
+          "role": "PM",
+          "email": "Ke_qiyang@u.nus.edu",
+          "year": "2",
+          "fac": "CHS",
+          "key": "",
+          "children": [
+            {
+              "id": 11,
+              "type": "person",
+              "name": "Zekai Gong",
+              "role": "Analyst",
+              "email": "Gong@u.nus.edu",
+              "year": "2",
+              "fac": "BBA",
+              "key": "",
+              "children": []
+            },
+            {
+              "id": 12,
+              "type": "person",
+              "name": "Brandon Lim",
+              "role": "Analyst",
+              "email": "brandonlim@u.nus.edu",
+              "year": "4",
+              "fac": "BBA",
+              "key": "",
+              "children": []
+            },
+            {
+              "id": 13,
+              "type": "person",
+              "name": "Zhiheng Fong",
+              "role": "Analyst",
+              "email": "fong.zhi.heng@u.nus.edu",
+              "year": "4",
+              "fac": "CHS",
+              "key": "",
+              "children": []
+            },
+            {
+              "id": 14,
+              "type": "person",
+              "name": "Wesley Lim",
+              "role": "Analyst",
+              "email": "wesleylim@u.nus.edu",
+              "year": "2",
+              "fac": "BBA",
+              "key": "",
+              "children": []
+            },
+            {
+              "id": 15,
+              "type": "person",
+              "name": "Daniel Png",
+              "role": "Analyst",
+              "email": "E0958442@u.nus.edu",
+              "year": "4",
+              "fac": "SOC",
+              "key": "",
+              "children": []
+            },
+            {
+              "id": 16,
+              "type": "person",
+              "name": "Joel Lim",
+              "role": "Analyst",
+              "email": "joellimcy@u.nus.edu",
+              "year": "2",
+              "fac": "BBA",
+              "key": "",
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": 17,
+          "type": "person",
+          "name": "Wong Zhao Yang",
+          "role": "PM",
+          "email": "e1121419@u.nus.edu",
+          "year": "4",
+          "fac": "BBA",
+          "key": "",
+          "children": [
+            {
+              "id": 18,
+              "type": "person",
+              "name": "Neeraj Sankar",
+              "role": "Analyst",
+              "email": "e1525802@u.nus.edu",
+              "year": "2",
+              "fac": "CDE",
+              "key": "",
+              "children": []
+            },
+            {
+              "id": 19,
+              "type": "person",
+              "name": "Leroy Liew",
+              "role": "Analyst",
+              "email": "e1398444@u.nus.edu",
+              "year": "3",
+              "fac": "BBA",
+              "key": "",
+              "children": []
+            },
+            {
+              "id": 20,
+              "type": "person",
+              "name": "Victoria Lam",
+              "role": "Analyst",
+              "email": "e1357165@u.nus.edu",
+              "year": "3",
+              "fac": "BBA",
+              "key": "",
+              "children": []
+            },
+            {
+              "id": 21,
+              "type": "person",
+              "name": "Eugene Law",
+              "role": "Analyst",
+              "email": "eugene_law@u.nus.edu",
+              "year": "1",
+              "fac": "BBA",
+              "key": "",
+              "children": []
+            },
+            {
+              "id": 22,
+              "type": "person",
+              "name": "Yuki Sato",
+              "role": "Analyst",
+              "email": "yuki.sato@u.nus.edu",
+              "year": "Masters",
+              "fac": "Masters",
+              "key": "",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "type": "dept",
+      "name": "GLOBAL MACRO",
+      "role": "",
+      "email": "",
+      "year": "",
+      "fac": "",
+      "key": "macro",
+      "children": [
+        {
+          "id": 24,
+          "type": "person",
+          "name": "Li Jiayun",
+          "role": "PM",
+          "email": "jiayun.li@u.nus.edu",
+          "year": "3",
+          "fac": "FOS",
+          "key": "",
+          "children": [
+            {
+              "id": 25,
+              "type": "person",
+              "name": "Dylan Wee",
+              "role": "Analyst",
+              "email": "dylanwee@u.nus.edu",
+              "year": "2",
+              "fac": "SOC",
+              "key": "",
+              "children": []
+            },
+            {
+              "id": 26,
+              "type": "person",
+              "name": "Adrian Tai",
+              "role": "Analyst",
+              "email": "e1633687@u.nus.edu",
+              "year": "2",
+              "fac": "FASS",
+              "key": "",
+              "children": []
+            },
+            {
+              "id": 27,
+              "type": "person",
+              "name": "Guo Xiaocheng",
+              "role": "Analyst",
+              "email": "guo_xiaocheng@u.nus.edu",
+              "year": "2",
+              "fac": "BIZ",
+              "key": "",
+              "children": []
+            },
+            {
+              "id": 28,
+              "type": "person",
+              "name": "Ryan Seah",
+              "role": "Analyst",
+              "email": "ryanseah@u.nus.edu",
+              "year": "1",
+              "fac": "SOC",
+              "key": "",
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": 29,
+          "type": "person",
+          "name": "Atharva Mulik",
+          "role": "PM",
+          "email": "atharvamulik@u.nus.edu",
+          "year": "3",
+          "fac": "SOC",
+          "key": "",
+          "children": [
+            {
+              "id": 30,
+              "type": "person",
+              "name": "Zhang Yihan",
+              "role": "Analyst",
+              "email": "zhangyihan@u.nus.edu",
+              "year": "2",
+              "fac": "FOS",
+              "key": "",
+              "children": []
+            },
+            {
+              "id": 31,
+              "type": "person",
+              "name": "Ko Siu Chun",
+              "role": "Analyst",
+              "email": "e1408787@u.nus.edu",
+              "year": "3",
+              "fac": "SOC",
+              "key": "",
+              "children": []
+            },
+            {
+              "id": 32,
+              "type": "person",
+              "name": "Jeremy Tan",
+              "role": "Analyst",
+              "email": "jeremytanjiale@u.nus.edu",
+              "year": "1",
+              "fac": "BIZ",
+              "key": "",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "type": "dept",
+      "name": "COMMODITIES",
+      "role": "",
+      "email": "",
+      "year": "",
+      "fac": "",
+      "key": "commod",
+      "children": [
+        {
+          "id": 34,
+          "type": "person",
+          "name": "Agustines Ian Dhex Madriaga",
+          "role": "PM",
+          "email": "agustines_ian@u.nus.edu",
+          "year": "4",
+          "fac": "CDE",
+          "key": "",
+          "children": [
+            {
+              "id": 35,
+              "type": "person",
+              "name": "Wenhao Jiang",
+              "role": "Analyst",
+              "email": "e1155315@u.nus.edu",
+              "year": "4",
+              "fac": "BIZ",
+              "key": "",
+              "children": []
+            },
+            {
+              "id": 36,
+              "type": "person",
+              "name": "Kihoon Park",
+              "role": "Analyst",
+              "email": "e0958385@u.nus.edu",
+              "year": "4",
+              "fac": "BIZ",
+              "key": "",
+              "children": []
+            },
+            {
+              "id": 37,
+              "type": "person",
+              "name": "Keith Koh",
+              "role": "Analyst",
+              "email": "e1332642@u.nus.edu",
+              "year": "3",
+              "fac": "SOC",
+              "key": "",
+              "children": []
+            },
+            {
+              "id": 38,
+              "type": "person",
+              "name": "Jordon Tan",
+              "role": "Analyst",
+              "email": "e1525131@u.nus.edu",
+              "year": "2",
+              "fac": "CHS",
+              "key": "",
+              "children": []
+            },
+            {
+              "id": 39,
+              "type": "person",
+              "name": "Marcus Teo",
+              "role": "Analyst",
+              "email": "marcusteozj@u.nus.edu",
+              "year": "3",
+              "fac": "BIZ",
+              "key": "",
+              "children": []
+            },
+            {
+              "id": 40,
+              "type": "person",
+              "name": "Yuwei Zhang",
+              "role": "Analyst",
+              "email": "e1356763@u.nus.edu",
+              "year": "2",
+              "fac": "SOC",
+              "key": "",
+              "children": []
+            },
+            {
+              "id": 41,
+              "type": "person",
+              "name": "Ryan Chan",
+              "role": "Analyst",
+              "email": "ryanckj@u.nus.edu",
+              "year": "2",
+              "fac": "FASS",
+              "key": "",
+              "children": []
+            },
+            {
+              "id": 42,
+              "type": "person",
+              "name": "Zhu Puhuan",
+              "role": "Analyst",
+              "email": "pzhu@u.nus.edu",
+              "year": "3",
+              "fac": "SOC",
+              "key": "",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 43,
+      "type": "dept",
+      "name": "SYSTEMATIC",
+      "role": "",
+      "email": "",
+      "year": "",
+      "fac": "",
+      "key": "syst",
+      "children": [
+        {
+          "id": 44,
+          "type": "person",
+          "name": "Sean Wong",
+          "role": "PM",
+          "email": "sean_wong@u.nus.edu",
+          "year": "4",
+          "fac": "SOC",
+          "key": "",
+          "children": [
+            {
+              "id": 45,
+              "type": "person",
+              "name": "Kiefer Ong",
+              "role": "Analyst",
+              "email": "kiefer.ong@u.nus.edu",
+              "year": "2",
+              "fac": "CDE",
+              "key": "",
+              "children": []
+            },
+            {
+              "id": 46,
+              "type": "person",
+              "name": "Madhu Polluru",
+              "role": "Analyst",
+              "email": "madhu_polluru@u.nus.edu",
+              "year": "4",
+              "fac": "SOC",
+              "key": "",
+              "children": []
+            },
+            {
+              "id": 47,
+              "type": "person",
+              "name": "Bao Jingyi",
+              "role": "Analyst",
+              "email": "jingyibao@u.nus.edu",
+              "year": "3",
+              "fac": "FOS",
+              "key": "",
+              "children": []
+            },
+            {
+              "id": 48,
+              "type": "person",
+              "name": "Jade Tan",
+              "role": "Analyst",
+              "email": "jadetan@u.nus.edu",
+              "year": "2",
+              "fac": "FOS",
+              "key": "",
+              "children": []
+            },
+            {
+              "id": 49,
+              "type": "person",
+              "name": "Casimir Arlabosse",
+              "role": "Analyst",
+              "email": "arlabossecasimir@u.nus.edu",
+              "year": "1",
+              "fac": "Masters",
+              "key": "",
+              "children": []
+            },
+            {
+              "id": 50,
+              "type": "person",
+              "name": "Carlos Tan",
+              "role": "Analyst",
+              "email": "carlostan@u.nus.edu",
+              "year": "1",
+              "fac": "SOC",
+              "key": "",
+              "children": []
+            },
+            {
+              "id": 51,
+              "type": "person",
+              "name": "Seow Jia Jun",
+              "role": "Analyst",
+              "email": "jiajun.seow@u.nus.edu",
+              "year": "1 (Masters)",
+              "fac": "Masters",
+              "key": "",
+              "children": []
+            },
+            {
+              "id": 52,
+              "type": "person",
+              "name": "Ella Cai",
+              "role": "Analyst",
+              "email": "yicenellacai@u.nus.edu",
+              "year": "2",
+              "fac": "SOC",
+              "key": "",
+              "children": []
+            },
+            {
+              "id": 53,
+              "type": "person",
+              "name": "Glenn Lim",
+              "role": "Analyst",
+              "email": "limxuankai_glenn@u.nus.edu",
+              "year": "2",
+              "fac": "SOC",
+              "key": "",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 54,
+      "type": "dept",
+      "name": "RISK",
+      "role": "",
+      "email": "",
+      "year": "",
+      "fac": "",
+      "key": "risk",
+      "children": [
+        {
+          "id": 55,
+          "type": "person",
+          "name": "Enzo Chung",
+          "role": "Head of Developers",
+          "email": "enzo.chung@u.nus.edu",
+          "year": "3",
+          "fac": "SOC",
+          "key": "",
+          "children": [
+            {
+              "id": 56,
+              "type": "person",
+              "name": "Peh Ting Xuan",
+              "role": "Analyst",
+              "email": "pehtingxuan@u.nus.edu",
+              "year": "4",
+              "fac": "SOC",
+              "key": "",
+              "children": []
+            },
+            {
+              "id": 57,
+              "type": "person",
+              "name": "Siva Adharsh",
+              "role": "Analyst",
+              "email": "siva.adharsh@u.nus.edu",
+              "year": "4",
+              "fac": "FOS",
+              "key": "",
+              "children": []
+            },
+            {
+              "id": 58,
+              "type": "person",
+              "name": "Veon Lok",
+              "role": "Analyst",
+              "email": "veonlok@u.nus.edu",
+              "year": "3",
+              "fac": "SOC",
+              "key": "",
+              "children": []
+            },
+            {
+              "id": 59,
+              "type": "person",
+              "name": "Ian Abiel",
+              "role": "Analyst",
+              "email": "E1525902@u.nus.edu",
+              "year": "2",
+              "fac": "SOC",
+              "key": "",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 60,
+      "type": "dept",
+      "name": "EXTERNALS",
+      "role": "",
+      "email": "",
+      "year": "",
+      "fac": "",
+      "key": "ext",
+      "children": [
+        {
+          "id": 61,
+          "type": "person",
+          "name": "Davin",
+          "role": "Head of Externals",
+          "email": "davinchang@u.nus.edu",
+          "year": "3",
+          "fac": "CHS",
+          "key": "",
+          "children": [
+            {
+              "id": 62,
+              "type": "person",
+              "name": "Rui Wen",
+              "role": "Fund Development Director",
+              "email": "zheng.ruiwen@u.nus.edu",
+              "year": "2",
+              "fac": "BBA",
+              "key": "",
+              "children": [
+                {
+                  "id": 64,
+                  "type": "person",
+                  "name": "Ariel",
+                  "role": "Deputy Director of Fund Development",
+                  "email": "arielchan@u.nus.edu",
+                  "year": "3",
+                  "fac": "CHS",
+                  "key": "",
+                  "children": []
+                },
+                {
+                  "id": 66,
+                  "type": "person",
+                  "name": "Julian Wee",
+                  "role": "Fund Development Analyst",
+                  "email": "weehongjiejulian@u.nus.edu",
+                  "year": "2",
+                  "fac": "BBA",
+                  "key": "",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": 65,
+              "type": "person",
+              "name": "Jonathan Goh",
+              "role": "Marketing & Brand Director",
+              "email": "jonathan.goh@u.nus.edu",
+              "year": "3",
+              "fac": "CHS",
+              "key": "",
+              "children": [
+                {
+                  "id": 67,
+                  "type": "person",
+                  "name": "Lynn Heng",
+                  "role": "Marketing & Brand Analyst",
+                  "email": "lynn.heng@u.nus.edu",
+                  "year": "2",
+                  "fac": "BBA",
+                  "key": "",
+                  "children": []
+                },
+                {
+                  "id": 68,
+                  "type": "person",
+                  "name": "Claresta Khoo",
+                  "role": "Marketing & Brand Analyst",
+                  "email": "clarestakhoo@u.nus.edu",
+                  "year": "1",
+                  "fac": "BBA",
+                  "key": "",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
